@@ -3,7 +3,7 @@ import string
 
 import nltk
 import streamlit as st
-from nltk.corpus import stopwords
+import nltk.corpus
 from nltk.stem.porter import PorterStemmer
 
 ps = PorterStemmer()
@@ -21,7 +21,7 @@ def transform_text(text):
     text = y[:]
     y.clear()
     for i in text:
-        if i not in stopwords.words("english") and i not in string.punctuation:
+        if i not in nltk.corpus.stopwords.words("english") and i not in string.punctuation:
             y.append(i)
 
     text = y[:]
@@ -121,7 +121,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# st.markdown("<div class='main-card'>", unsafe_allow_html=True)
 st.markdown("<h1>📧 Email/SMS Spam Classifier</h1>", unsafe_allow_html=True)
 
 input_sms = st.text_area("✍️ Enter your message:")
